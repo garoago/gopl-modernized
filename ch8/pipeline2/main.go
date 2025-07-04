@@ -8,14 +8,14 @@ package main
 
 import "fmt"
 
-//!+
+// !+
 func main() {
 	naturals := make(chan int)
 	squares := make(chan int)
 
 	// Counter
 	go func() {
-		for x := 0; x < 100; x++ {
+		for x := range 100 {
 			naturals <- x
 		}
 		close(naturals)

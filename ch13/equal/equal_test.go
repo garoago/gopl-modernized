@@ -26,10 +26,10 @@ func TestEqual(t *testing.T) {
 
 	type mystring string
 
-	var iface1, iface1Again, iface2 interface{} = &one, &oneAgain, &two
+	var iface1, iface1Again, iface2 any = &one, &oneAgain, &two
 
 	for _, test := range []struct {
-		x, y interface{}
+		x, y any
 		want bool
 	}{
 		// basic types

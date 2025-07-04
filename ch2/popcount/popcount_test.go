@@ -33,7 +33,7 @@ func PopCountByClearing(x uint64) int {
 
 func PopCountByShifting(x uint64) int {
 	n := 0
-	for i := uint(0); i < 64; i++ {
+	for i := range uint(64) {
 		if x&(1<<i) != 0 {
 			n++
 		}

@@ -7,7 +7,8 @@
 // a concurrent cake shop with numerous parameters.
 //
 // Use this command to run the benchmarks:
-// 	$ go test -bench=. gopl.io/ch8/cake
+//
+//	$ go test -bench=. gopl.io/ch8/cake
 package cake
 
 import (
@@ -69,7 +70,7 @@ func (s *Shop) inscriber(iced <-chan cake) {
 
 // Work runs the simulation 'runs' times.
 func (s *Shop) Work(runs int) {
-	for run := 0; run < runs; run++ {
+	for range runs {
 		baked := make(chan cake, s.BakeBuf)
 		iced := make(chan cake, s.IceBuf)
 		go s.baker(baked)

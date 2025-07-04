@@ -12,11 +12,11 @@ package memo
 //!+Func
 
 // Func is the type of the function to memoize.
-type Func func(key string) (interface{}, error)
+type Func func(key string) (any, error)
 
 // A result is the result of calling a Func.
 type result struct {
-	value interface{}
+	value any
 	err   error
 }
 
@@ -44,7 +44,7 @@ func New(f Func) *Memo {
 	return memo
 }
 
-func (memo *Memo) Get(key string) (interface{}, error) {
+func (memo *Memo) Get(key string) (any, error) {
 	response := make(chan result)
 	memo.requests <- request{key, response}
 	res := <-response

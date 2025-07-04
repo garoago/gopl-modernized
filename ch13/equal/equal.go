@@ -11,7 +11,7 @@ import (
 	"unsafe"
 )
 
-//!+
+// !+
 func equal(x, y reflect.Value, seen map[comparison]bool) bool {
 	if !x.IsValid() || !y.IsValid() {
 		return x.IsValid() == y.IsValid()
@@ -107,14 +107,14 @@ func equal(x, y reflect.Value, seen map[comparison]bool) bool {
 
 //!-
 
-//!+comparison
+// !+comparison
 // Equal reports whether x and y are deeply equal.
-//!-comparison
+// !-comparison
 //
 // Map keys are always compared with ==, not deeply.
 // (This matters for keys containing pointers or interfaces.)
-//!+comparison
-func Equal(x, y interface{}) bool {
+// !+comparison
+func Equal(x, y any) bool {
 	seen := make(map[comparison]bool)
 	return equal(reflect.ValueOf(x), reflect.ValueOf(y), seen)
 }

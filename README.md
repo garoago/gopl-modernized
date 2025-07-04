@@ -1,4 +1,15 @@
-# The Go Programming Language
+# GOPL modernized
+
+This repository contains the examples from the book
+"The Go Programming Language" (GOPL) modernized
+with with the
+https://pkg.go.dev/golang.org/x/tools/gopls/internal/analysis/modernize[modernize]
+tool.
+
+Below is the original `README.md`.
+
+
+## The Go Programming Language
 
 This repository provides the downloadable example programs
 for the book, "The Go Programming Language"; see http://www.gopl.io.

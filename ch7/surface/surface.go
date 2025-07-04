@@ -48,8 +48,8 @@ func surface(w io.Writer, f func(x, y float64) float64) {
 	fmt.Fprintf(w, "<svg xmlns='http://www.w3.org/2000/svg' "+
 		"style='stroke: grey; fill: white; stroke-width: 0.7' "+
 		"width='%d' height='%d'>", width, height)
-	for i := 0; i < cells; i++ {
-		for j := 0; j < cells; j++ {
+	for i := range cells {
+		for j := range cells {
 			ax, ay := corner(f, i+1, j)
 			bx, by := corner(f, i, j)
 			cx, cy := corner(f, i, j+1)
@@ -63,7 +63,7 @@ func surface(w io.Writer, f func(x, y float64) float64) {
 
 // -- main code for gopl.io/ch7/surface --
 
-//!+parseAndCheck
+// !+parseAndCheck
 func parseAndCheck(s string) (eval.Expr, error) {
 	if s == "" {
 		return nil, fmt.Errorf("empty expression")
@@ -86,7 +86,7 @@ func parseAndCheck(s string) (eval.Expr, error) {
 
 //!-parseAndCheck
 
-//!+plot
+// !+plot
 func plot(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	expr, err := parseAndCheck(r.Form.Get("expr"))
@@ -103,7 +103,7 @@ func plot(w http.ResponseWriter, r *http.Request) {
 
 //!-plot
 
-//!+main
+// !+main
 func main() {
 	http.HandleFunc("/plot", plot)
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))

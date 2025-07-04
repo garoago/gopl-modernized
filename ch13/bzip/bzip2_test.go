@@ -19,7 +19,7 @@ func TestBzip2(t *testing.T) {
 	// Write a repetitive message in a million pieces,
 	// compressing one copy but not the other.
 	tee := io.MultiWriter(w, &uncompressed)
-	for i := 0; i < 1000000; i++ {
+	for range 1000000 {
 		io.WriteString(tee, "hello")
 	}
 	if err := w.Close(); err != nil {

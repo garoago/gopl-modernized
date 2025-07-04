@@ -17,8 +17,8 @@ import (
 	"time"
 )
 
-//!+httpRequestBody
-func httpGetBody(url string) (interface{}, error) {
+// !+httpRequestBody
+func httpGetBody(url string) (any, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
@@ -52,7 +52,7 @@ func incomingURLs() <-chan string {
 }
 
 type M interface {
-	Get(key string) (interface{}, error)
+	Get(key string) (any, error)
 }
 
 /*

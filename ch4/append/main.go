@@ -17,10 +17,7 @@ func appendslice(x []int, y ...int) []int {
 	} else {
 		// There is insufficient space.
 		// Grow by doubling, for amortized linear complexity.
-		zcap := zlen
-		if zcap < 2*len(x) {
-			zcap = 2 * len(x)
-		}
+		zcap := max(zlen, 2*len(x))
 		z = make([]int, zlen, zcap)
 		copy(z, x)
 	}
@@ -28,7 +25,7 @@ func appendslice(x []int, y ...int) []int {
 	return z
 }
 
-//!+append
+// !+append
 func appendInt(x []int, y int) []int {
 	var z []int
 	zlen := len(x) + 1
@@ -38,10 +35,7 @@ func appendInt(x []int, y int) []int {
 	} else {
 		// There is insufficient space.  Allocate a new array.
 		// Grow by doubling, for amortized linear complexity.
-		zcap := zlen
-		if zcap < 2*len(x) {
-			zcap = 2 * len(x)
-		}
+		zcap := max(zlen, 2*len(x))
 		z = make([]int, zlen, zcap)
 		copy(z, x) // a built-in function; see text
 	}
@@ -51,10 +45,10 @@ func appendInt(x []int, y int) []int {
 
 //!-append
 
-//!+growth
+// !+growth
 func main() {
 	var x, y []int
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		y = appendInt(x, i)
 		fmt.Printf("%d  cap=%d\t%v\n", i, cap(y), y)
 		x = y

@@ -12,7 +12,7 @@ import (
 	"reflect"
 )
 
-func MarshalIndent(v interface{}) ([]byte, error) {
+func MarshalIndent(v any) ([]byte, error) {
 	p := printer{width: margin}
 	if err := pretty(&p, reflect.ValueOf(v)); err != nil {
 		return nil, err
@@ -107,7 +107,7 @@ func (p *printer) print(t *token) {
 		}
 	}
 }
-func (p *printer) stringf(format string, args ...interface{}) {
+func (p *printer) stringf(format string, args ...any) {
 	p.string(fmt.Sprintf(format, args...))
 }
 

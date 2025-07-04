@@ -7,7 +7,6 @@
 //
 // This version uses bounded parallelism.
 // For simplicity, it does not address the termination problem.
-//
 package main
 
 import (
@@ -27,7 +26,7 @@ func crawl(url string) []string {
 	return list
 }
 
-//!+
+// !+
 func main() {
 	worklist := make(chan []string)  // lists of URLs, may have duplicates
 	unseenLinks := make(chan string) // de-duplicated URLs
@@ -36,7 +35,7 @@ func main() {
 	go func() { worklist <- os.Args[1:] }()
 
 	// Create 20 crawler goroutines to fetch each unseen link.
-	for i := 0; i < 20; i++ {
+	for range 20 {
 		go func() {
 			for link := range unseenLinks {
 				foundLinks := crawl(link)
