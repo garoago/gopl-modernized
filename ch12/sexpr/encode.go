@@ -41,7 +41,7 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 	case reflect.String:
 		fmt.Fprintf(buf, "%q", v.String())
 
-	case reflect.Ptr:
+	case reflect.Pointer:
 		return encode(buf, v.Elem())
 
 	case reflect.Array, reflect.Slice: // (value ...)

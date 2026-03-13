@@ -173,7 +173,7 @@ func pretty(p *printer, v reflect.Value) error {
 		}
 		p.end()
 
-	case reflect.Ptr:
+	case reflect.Pointer:
 		return pretty(p, v.Elem())
 
 	default: // float, complex, bool, chan, func, interface

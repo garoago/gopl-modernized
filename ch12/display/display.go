@@ -41,7 +41,7 @@ func formatAtom(v reflect.Value) string {
 		return "false"
 	case reflect.String:
 		return strconv.Quote(v.String())
-	case reflect.Chan, reflect.Func, reflect.Ptr,
+	case reflect.Chan, reflect.Func, reflect.Pointer,
 		reflect.Slice, reflect.Map:
 		return v.Type().String() + " 0x" +
 			strconv.FormatUint(uint64(v.Pointer()), 16)
@@ -69,7 +69,7 @@ func display(path string, v reflect.Value) {
 			display(fmt.Sprintf("%s[%s]", path,
 				formatAtom(key)), v.MapIndex(key))
 		}
-	case reflect.Ptr:
+	case reflect.Pointer:
 		if v.IsNil() {
 			fmt.Printf("%s = nil\n", path)
 		} else {

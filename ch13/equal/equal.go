@@ -66,7 +66,7 @@ func equal(x, y reflect.Value, seen map[comparison]bool) bool {
 	case reflect.Chan, reflect.UnsafePointer, reflect.Func:
 		return x.Pointer() == y.Pointer()
 
-	case reflect.Ptr, reflect.Interface:
+	case reflect.Pointer, reflect.Interface:
 		return equal(x.Elem(), y.Elem(), seen)
 
 	case reflect.Array, reflect.Slice:
